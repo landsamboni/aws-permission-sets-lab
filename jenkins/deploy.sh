@@ -50,7 +50,7 @@ IDENTITY_STORE_ID=$(aws sso-admin list-instances \
   --output text | head -n1)
 
 # === Paso 2: Crear el grupo  si no existe ===
-GROUP_NAME="LipaGroupReadOnly"
+GROUP_NAME="BatmanGroupReadOnly"
 
 # Verificar si ya existe
 GROUP_ID=$(aws identitystore list-groups \

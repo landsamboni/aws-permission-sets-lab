@@ -41,7 +41,7 @@ yq e -o=json '.permission_sets[]' "$CONFIG_FILE" | jq -c '.' | while read -r ite
 
   echo "✅ Validaciones completadas para $PERMISSION_SET_NAME"
 
-  # Verificar stack en ROLLBACK_COMPLETE
+  # Verificar stack en ROLLBACK_COMPLETE.
   existing_status=$(aws cloudformation describe-stacks \
     --stack-name "$STACK_NAME" \
     --query "Stacks[0].StackStatus" \

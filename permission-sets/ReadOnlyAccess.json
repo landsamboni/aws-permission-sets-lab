@@ -6,7 +6,7 @@
         "Action": [
           "s3:ListBucket",
           "ec2:Describe*"
-        ],
+        ]
         "Resource": "*"
       }
     ]

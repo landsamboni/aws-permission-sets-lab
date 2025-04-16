@@ -12,6 +12,20 @@ INSTANCE_ARN="arn:aws:sso:::instance/ssoins-7223b9ca3cca17b3"
 POLICY_FILE="permission-sets/${PERMISSION_SET_NAME}.json"
 STACK_NAME="PermissionSet-${PERMISSION_SET_NAME}"
 TEMPLATE_FILE="templates/permission-set.yaml"
+# === Validaciones previas ===
+echo "🔍 Validando sintaxis del policy JSON..."
+if ! jq empty "$POLICY_FILE"; then
+  echo "❌ Error: El archivo JSON '$POLICY_FILE' tiene errores de sintaxis."
+  exit 1
+fi
+
+echo "🔍 Validando plantilla CloudFormation con cfn-lint..."
+if ! cfn-lint "$TEMPLATE_FILE"; then
+  echo "❌ Error: La plantilla '$TEMPLATE_FILE' contiene errores de CloudFormation."
+  exit 1
+fi
+
+echo "✅ Validaciones completadas correctamente. Continuando con el despliegue..."
 
 
 # Check if stack exists and is in ROLLBACK_COMPLETE

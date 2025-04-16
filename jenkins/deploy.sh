@@ -71,10 +71,29 @@ else
 fi
 
 # === Paso 3: Obtener el ARN del Permission Set creado ===
-PERMISSION_SET_ARN=$(aws sso-admin list-permission-sets \
+# Obtener todos los ARNs de permission sets
+ALL_PERMISSION_SETS=$(aws sso-admin list-permission-sets \
   --instance-arn "$INSTANCE_ARN" \
-  --query "PermissionSets[?contains(@, '$PERMISSION_SET_NAME')]" \
-  --output text)
+  --output text --query "PermissionSets[]")
+
+# Buscar cuál ARN corresponde al nombre del permission set deseado
+for arn in $ALL_PERMISSION_SETS; do
+  name=$(aws sso-admin describe-permission-set \
+    --instance-arn "$INSTANCE_ARN" \
+    --permission-set-arn "$arn" \
+    --query "PermissionSet.Name" \
+    --output text)
+
+  if [[ "$name" == "$PERMISSION_SET_NAME" ]]; then
+    PERMISSION_SET_ARN="$arn"
+    break
+  fi
+done
+
+if [[ -z "$PERMISSION_SET_ARN" ]]; then
+  echo "❌ Error: Permission Set '$PERMISSION_SET_NAME' not found."
+  exit 1
+fi
 
 # === Paso 4: Asignar el Permission Set al grupo en la cuenta objetivo ===
 TARGET_ACCOUNT_ID="867344432024"

@@ -47,7 +47,7 @@ echo "✅ Deployment script completed successfully"
 # === Paso 1: Obtener el Identity Store ID ===
 IDENTITY_STORE_ID=$(aws sso-admin list-instances \
   --query "Instances[0].IdentityStoreId" \
-  --output text)
+  --output text | head -n1)
 
 # === Paso 2: Crear el grupo DuaGroupReadOnly si no existe ===
 GROUP_NAME="DuaGroupReadOnly"

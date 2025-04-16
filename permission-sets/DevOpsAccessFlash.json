@@ -3,7 +3,10 @@
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "*",
+      "Action": [
+        "ec2:*",
+        "lambda:*"
+      ],
       "Resource": "*"
     }
   ]

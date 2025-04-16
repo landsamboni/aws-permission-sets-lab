@@ -1,0 +1,34 @@
+permission_sets:
+  - name: ReadOnlyAccessSuperman
+    description: Permite solo lectura general
+    policy_file: ReadOnlyAccessSuperman.json
+    group: BatmanGroupReadOnly
+    session_duration: PT4H
+    managed_policies:
+      - arn:aws:iam::aws:policy/ReadOnlyAccess
+    accounts:
+      - 418295707331  # prod-001
+      - 615299774279  # test-001
+      - 867344432024  # Sandbox-as
+
+  - name: BillingAccessWonderWoman
+    description: Permite acceso a facturación y Cost Explorer
+    policy_file: BillingAccessWonderWoman.json
+    group: WonderWomanBillingGroup
+    session_duration: PT2H
+    managed_policies:
+      - arn:aws:iam::aws:policy/job-function/Billing
+    accounts:
+      - 418295707331  # prod-001
+      - 183295420469  # sandbox-delete
+
+  - name: DevOpsAccessFlash
+    description: Permite gestionar recursos EC2 y Lambda
+    policy_file: DevOpsAccessFlash.json
+    group: FlashDevOpsGroup
+    session_duration: PT6H
+    managed_policies:
+      - arn:aws:iam::aws:policy/PowerUserAccess
+    accounts:
+      - 418295707331  # prod-001
+      - 867344432024  # Sandbox-as

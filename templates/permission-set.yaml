@@ -8,6 +8,12 @@ Parameters:
     Type: String
   InlinePolicyDocument:
     Type: String
+  SessionDuration:
+    Type: String
+    Default: PT8H
+  ManagedPolicies:
+    Type: CommaDelimitedList
+    Default: []
 
 Resources:
   PermissionSet:
@@ -16,5 +22,6 @@ Resources:
       Name: !Ref PermissionSetName
       Description: !Ref Description
       InstanceArn: !Ref InstanceArn
-      SessionDuration: PT8H
+      SessionDuration: !Ref SessionDuration
       InlinePolicy: !Ref InlinePolicyDocument
+      ManagedPolicies: !Ref ManagedPolicies

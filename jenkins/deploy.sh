@@ -23,7 +23,7 @@ yq e -o=json '.permission_sets[]' "$CONFIG_FILE" | jq -c '.' | while read -r ite
   ACCOUNTS=$(echo "$item" | jq -r '.accounts[]')
   SESSION_DURATION=$(echo "$item" | jq -r '.session_duration // "PT8H"')
 
-  RAW_POLICIES=$(echo "$item" | jq -r '.managed_policies // empty' | jq -Rs 'split("\n") | map(select(length > 0)) | join(",")')
+  RAW_POLICIES=$(echo "$item" | jq -r '.managed_policies | select(type == "array") | join(",")')
   if [[ -n "$RAW_POLICIES" ]]; then
     MANAGED_POLICIES="$RAW_POLICIES"
   else

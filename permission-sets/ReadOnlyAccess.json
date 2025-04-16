@@ -5,7 +5,8 @@
         "Effect": "Allow",
         "Action": [
           "s3:ListBucket",
-          "ec2:Describe*"
+          "ec2:Describe*",
+          "ec2:List*"
         ],
         "Resource": "*"
       }

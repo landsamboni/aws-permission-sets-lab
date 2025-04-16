@@ -22,7 +22,13 @@ yq e -o=json '.permission_sets[]' "$CONFIG_FILE" | jq -c '.' | while read -r ite
   GROUP_NAME=$(echo "$item" | jq -r '.group')
   ACCOUNTS=$(echo "$item" | jq -r '.accounts[]')
   SESSION_DURATION=$(echo "$item" | jq -r '.session_duration // "PT8H"')
-  MANAGED_POLICIES=$(echo "$item" | jq -r '.managed_policies // empty' | jq -Rs 'split("\n") | map(select(length > 0)) | join(",")')
+
+  RAW_POLICIES=$(echo "$item" | jq -r '.managed_policies // empty' | jq -Rs 'split("\n") | map(select(length > 0)) | join(",")')
+  if [[ -n "$RAW_POLICIES" ]]; then
+    MANAGED_POLICIES="$RAW_POLICIES"
+  else
+    unset MANAGED_POLICIES
+  fi
 
   POLICY_FILE="permission-sets/$POLICY_FILE_NAME"
   STACK_NAME="PermissionSet-$PERMISSION_SET_NAME"

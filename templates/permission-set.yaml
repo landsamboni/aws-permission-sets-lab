@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  PermissionSetName:
+    Type: String
+  Description:
+    Type: String
+  InstanceArn:
+    Type: String
+  InlinePolicyDocument:
+    Type: String
+
+Resources:
+  PermissionSet:
+    Type: AWS::SSO::PermissionSet
+    Properties:
+      Name: !Ref PermissionSetName
+      Description: !Ref Description
+      InstanceArn: !Ref InstanceArn
+      SessionDuration: PT8H
+      InlinePolicy: !Ref InlinePolicyDocument

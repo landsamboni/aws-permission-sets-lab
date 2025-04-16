@@ -8,7 +8,7 @@ export AWS_REGION=us-east-1
 # Parámetros
 PERMISSION_SET_NAME="ReadOnlyAccess"
 DESCRIPTION="Lab permission set"
-INSTANCE_ARN="arn:aws:sso:::instance/ssoins-xxxxxxxxxxxxxxx"
+INSTANCE_ARN="arn:aws:sso:::instance/ssoins-7223b9ca3cca17b3"
 POLICY_FILE="permission-sets/${PERMISSION_SET_NAME}.json"
 STACK_NAME="PermissionSet-${PERMISSION_SET_NAME}"
 TEMPLATE_FILE="templates/permission-set.yaml"

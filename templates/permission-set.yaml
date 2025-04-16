@@ -10,7 +10,7 @@ Parameters:
     Type: String
 
 Resources:
-  PermissionSet:
+  PermissionSet
     Type: AWS::SSO::PermissionSet
     Properties:
       Name: !Ref PermissionSetName

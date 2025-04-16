@@ -49,8 +49,8 @@ IDENTITY_STORE_ID=$(aws sso-admin list-instances \
   --query "Instances[0].IdentityStoreId" \
   --output text | head -n1)
 
-# === Paso 2: Crear el grupo DuaGroupReadOnly si no existe ===
-GROUP_NAME="DuaGroupReadOnly"
+# === Paso 2: Crear el grupo  si no existe ===
+GROUP_NAME="LipaGroupReadOnly"
 
 # Verificar si ya existe
 GROUP_ID=$(aws identitystore list-groups \

@@ -15,6 +15,9 @@ Parameters:
     Type: String
     Default: ""
 
+Conditions:
+  HasManagedPolicies: !Not [!Equals [!Ref ManagedPolicies, ""]]
+
 Resources:
   PermissionSet:
     Type: AWS::SSO::PermissionSet
@@ -24,4 +27,7 @@ Resources:
       InstanceArn: !Ref InstanceArn
       SessionDuration: !Ref SessionDuration
       InlinePolicy: !Ref InlinePolicyDocument
-      ManagedPolicies: !Split [",", !Ref ManagedPolicies]
+      ManagedPolicies: !If 
+        - HasManagedPolicies
+        - !Split [",", !Ref ManagedPolicies]
+        - !Ref "AWS::NoValue"

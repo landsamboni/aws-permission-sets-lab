@@ -24,4 +24,4 @@ Resources:
       InstanceArn: !Ref InstanceArn
       SessionDuration: !Ref SessionDuration
       InlinePolicy: !Ref InlinePolicyDocument
-      ManagedPolicies: !Ref ManagedPolicies
+      ManagedPolicies: !Split [",", !Ref ManagedPolicies]

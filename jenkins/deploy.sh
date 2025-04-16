@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+export AWS_SHARED_CREDENTIALS_FILE="/var/jenkins_home/.aws/credentials"
+export AWS_PROFILE=default
 export AWS_REGION=us-east-1
 
 # Parámetros

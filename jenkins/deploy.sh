@@ -12,6 +12,7 @@ INSTANCE_ARN="arn:aws:sso:::instance/ssoins-7223b9ca3cca17b3"
 POLICY_FILE="permission-sets/${PERMISSION_SET_NAME}.json"
 STACK_NAME="PermissionSet-${PERMISSION_SET_NAME}"
 TEMPLATE_FILE="templates/permission-set.yaml"
+
 # === Validaciones previas ===
 echo "🔍 Validando sintaxis del policy JSON..."
 if ! jq empty "$POLICY_FILE"; then

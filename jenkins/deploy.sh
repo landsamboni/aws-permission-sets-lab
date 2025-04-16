@@ -6,8 +6,8 @@ export AWS_PROFILE=default
 export AWS_REGION=us-east-1
 
 # Parámetros
-PERMISSION_SET_NAME="ReadOnlyAccess"
-DESCRIPTION="Lab permission set"
+PERMISSION_SET_NAME="ReadOnlyAccessSuperman"
+DESCRIPTION="This is a permission set created from Jenkins"
 INSTANCE_ARN="arn:aws:sso:::instance/ssoins-7223b9ca3cca17b3"
 POLICY_FILE="permission-sets/${PERMISSION_SET_NAME}.json"
 STACK_NAME="PermissionSet-${PERMISSION_SET_NAME}"
